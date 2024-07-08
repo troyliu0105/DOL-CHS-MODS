@@ -33,7 +33,7 @@ jobs:
         uses: robinraju/release-downloader@v1.8
         with:
           latest: true
-          fileName: "DoL-*-Lyra-*-besc-cheat-csd-sideviewbj-*.zip"
+          fileName: "DoL-*-chsmods-*-besc-wax-cheat-csd-*.zip"
       - id: getRelease-polyfill
         name: release-downloader
         uses: robinraju/release-downloader@v1.8
@@ -112,10 +112,10 @@ jobs:
           for manifest_name in ["${{ env.MANIFEST_JSON_NORMAL_FILENAME }}", "${{ env.MANIFEST_JSON_POLYFILL_FILENAME }}"]:
             with open(f"${{ env.DOWNLOAD_RELEASE_TEMP_PATH }}/{manifest_name}", "r+", encoding="utf-8") as manifest_file:
               manifest_json = json.loads(manifest_file.read())
-              manifest_json["scope"] = "/${{ github.event.repository.name }}/"
-              manifest_json["start_url"] = "/${{ github.event.repository.name }}/"
-              manifest_json["shortcuts"][0]["url"] = "/${{ github.event.repository.name }}/"
-              manifest_json["icons"][0]["src"] = "/${{ github.event.repository.name }}/icon.png"
+              manifest_json["scope"] = "/"
+              manifest_json["start_url"] = "/"
+              manifest_json["shortcuts"][0]["url"] = "/"
+              manifest_json["icons"][0]["src"] = "/icon.png"
               manifest_file.seek(0)
               manifest_file.truncate()
               manifest_file.write(json.dumps(manifest_json, indent=2))
@@ -126,7 +126,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_PAT: ${{ secrets.GH_PAT_LYRA }}
         with:
-          repo: DoL-Lyra/dol-lyra.github.io
+          repo: troyliu0105/DOL-CHS-MODS
           # https://github.com/Eltirosto/Degrees-of-Lewdity-Chinese-Localization/blob/e88b5f05a7e1c210edc80e9d6fb32716abd24e60/.github/workflows/main.yml#L120
           build_dir: ./modloader-temp
           keep_history: false
